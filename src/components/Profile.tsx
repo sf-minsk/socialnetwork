@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from '../pictures/contentLogo.png'
-import './Profile.css'
+import classes from './Profile.module.css'
 
-const Profile = () => {
+function Profile() {
     return (
-        <div className={'Content'}>
+        <div className={classes.Content}>
             <img src={logo} alt=""/>
             <div>
                 avatar + description
@@ -15,14 +15,14 @@ const Profile = () => {
             <div>
                 New post
             </div>
-            <div>
-                <div>
+            <div className={classes.posts}>
+                <div className={classes.item}>
                     post1
                 </div>
-                <div>
+                <div className={classes.item}>
                     post2
                 </div>
-                <div>
+                <div className={classes.item}>
                     post3
                 </div>
             </div>
