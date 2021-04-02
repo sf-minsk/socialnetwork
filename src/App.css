@@ -9,29 +9,3 @@
     margin: 0 auto;
     /*grid-gap: 10px;*/
 }
-
-
-.Header img {
-    height: 50px;
-    margin-top: 1px;
-    margin-left: 1px;
-}
-
-.Header {
-    grid-area: H;
-    background-color: #75dea5;
-}
-
-.Nav {
-    grid-area: N;
-    background-color: #6ee0c7;
-}
-
-.Content {
-    grid-area: C;
-    background-color: #c6f8ea;
-}
-.Content img {
-    width: 100%;
-    height: 120px;
-}
