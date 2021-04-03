@@ -1,10 +1,10 @@
 import React from 'react';
-import logo from '../pictures/contentLogo.png'
-import classes from './Profile.module.css'
+import logo from './contentLogo.png'
+import cls from './Profile.module.css'
 
 function Profile() {
     return (
-        <div className={classes.Content}>
+        <div className={cls.Content}>
             <img src={logo} alt=""/>
             <div>
                 avatar + description
@@ -15,14 +15,14 @@ function Profile() {
             <div>
                 New post
             </div>
-            <div className={classes.posts}>
-                <div className={classes.item}>
+            <div className={cls.posts}>
+                <div className={cls.item}>
                     post1
                 </div>
-                <div className={classes.item}>
+                <div className={cls.item}>
                     post2
                 </div>
-                <div className={classes.item}>
+                <div className={cls.item}>
                     post3
                 </div>
             </div>
