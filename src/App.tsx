@@ -14,10 +14,7 @@ export const App = () => {
                 {/*<Profile/>*/}
                 <Dialogs/>
             </div>
-
-
         </div>
     )
 }
 
-export default App;
