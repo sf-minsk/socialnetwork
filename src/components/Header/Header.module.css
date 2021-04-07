@@ -1,10 +1,10 @@
-.Header img {
+.header img {
     height: 50px;
     margin-top: 1px;
     margin-left: 1px;
 }
 
-.Header {
+.header {
     grid-area: H;
     background-color: #75dea5;
 }

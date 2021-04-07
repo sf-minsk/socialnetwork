@@ -9,3 +9,8 @@
     margin: 0 auto;
     /*grid-gap: 10px;*/
 }
+
+.app-wrapper-content {
+    grid-area: C;
+    background-color: #c6f8ea;
+}

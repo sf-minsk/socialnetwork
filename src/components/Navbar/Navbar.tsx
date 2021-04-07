@@ -1,9 +1,9 @@
 import React from 'react';
 import cls from './Navbar.module.css'
 
-function Navbar() {
+export const Navbar = () => {
     return (
-        <nav className={cls.Nav}>
+        <nav className={cls.nav}>
             <div className={cls.item}>
                 <a>Profile</a>
             </div>
@@ -20,7 +20,5 @@ function Navbar() {
                 <a>Settings</a>
             </div>
         </nav>
-    );
+    )
 }
-
-export default Navbar;
