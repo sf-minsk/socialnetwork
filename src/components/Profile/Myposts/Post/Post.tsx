@@ -6,7 +6,7 @@ type PostType = {
     message: string
 }
 
-function Post(props: PostType) {
+export const Post= (props: PostType) => {
     return (
         <div className={cls.item}>
             {props.message}
@@ -14,7 +14,3 @@ function Post(props: PostType) {
         </div>
     )
 }
-
-export default Post;
-
-

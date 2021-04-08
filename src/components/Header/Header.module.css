@@ -7,4 +7,5 @@
 .header {
     grid-area: H;
     background-color: #75dea5;
+    border-bottom: 1px solid black;
 }

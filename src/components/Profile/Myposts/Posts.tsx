@@ -1,23 +1,27 @@
 import React from 'react';
-//import cls from './Posts.module.css'
-import Post from "./Post/Post";
+import s from './Posts.module.css'
+import {Post} from "./Post/Post";
 
-function Posts() {
+export const Posts = () => {
     return (
-        <div>
+        <div className={s.postsBlock}>
             <div>
-                my posts
+                <h3>
+                    my posts
+                </h3>
             </div>
             <div>
-                <textarea/>
-                <button>POST</button>
+                <div>
+                    <textarea/>
+                </div>
+                <div>
+                    <button>POST</button>
+                </div>
             </div>
-            <Post message='Hey, how are u?' likeCounts={43}/>
-            <Post message='It&#39;s my first post' likeCounts={20}/>
+            <div className={s.posts}>
+                <Post message='Hey, how are u?' likeCounts={43}/>
+                <Post message='It&#39;s my first post' likeCounts={20}/>
+            </div>
         </div>
     )
 }
-
-export default Posts;
-
-

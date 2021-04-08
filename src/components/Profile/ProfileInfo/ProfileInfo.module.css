@@ -1,0 +1,8 @@
+.content img {
+    width: 100%;
+    height: 120px;
+}
+
+.content .descriptionBlock {
+    padding: 10px;
+}

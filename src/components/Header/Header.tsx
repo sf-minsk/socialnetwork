@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from "./PElogovector.png"
-import cls from './Header.module.css'
+import s from './Header.module.css'
 
 export const Header = () => {
     return (
-        <header className={cls.header}>
+        <header className={s.header}>
             <img src={logo} alt=""/>
         </header>
     )
