@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from './Post.module.css'
+import s from './Post.module.css'
 
 type PostType = {
     likeCounts: number
@@ -8,7 +8,7 @@ type PostType = {
 
 export const Post= (props: PostType) => {
     return (
-        <div className={cls.item}>
+        <div className={s.item}>
             {props.message}
             <div>Like ({props.likeCounts})</div>
         </div>
