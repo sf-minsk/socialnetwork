@@ -6,6 +6,7 @@
             'H H'
             'N C';
     width: 1000px;
+    max-width: 1000px;
     margin: 0 auto;
     /*grid-gap: 10px;*/
 }
