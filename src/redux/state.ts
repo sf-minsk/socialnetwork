@@ -27,8 +27,8 @@ export type RootStateType = {
 export const state: RootStateType = {
     profilePage: {
         posts: [
-            {id: 1, message: 'Jane', likeCount: 41},
-            {id: 2, message: 'Maxim', likeCount: 20}],
+            {id: 1, message: 'Hello', likeCount: 41},
+            {id: 2, message: 'How are u?', likeCount: 20}],
     },
     dialogsPage: {
         dialogs: [
@@ -44,5 +44,13 @@ export const state: RootStateType = {
     }
 }
 
+export const addPost = (postMessage: string) => {
+    const newPost:PostsType = {
+        id: 5,
+        message: postMessage,
+        likeCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+}
 
 

@@ -15,10 +15,20 @@ export const Dialogs = (props: PropsType) => {
 
     const dialogsElements = props.dialogs.map((d: any) => <DialogItem id={d.id} name={d.name}/>)
     const messagesElements = props.messages.map((m: any) => <Message message={m.message}/>)
+    const messageTextElement = React.createRef<HTMLTextAreaElement>()
+
+    const onClick = () => {
+        const messageText = messageTextElement.current?.value
+        alert(messageText)
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}> {dialogsElements} </div>
-            <div className={s.messages}> {messagesElements} </div>
+            <div>
+                <textarea ref={messageTextElement}/>
+                <button onClick={onClick}>send</button>
+                <div className={s.messages}> {messagesElements} </div>
+            </div>
         </div>
     )
 }
