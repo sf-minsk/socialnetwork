@@ -24,4 +24,16 @@ const dialogsReducer = (state: DialogsPageType, action: ActionsTypes) => {
     }
 }
 
+export const updateNewMessageTextAC = (text: string): ActionsTypes => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newMessageText: text,
+    }
+}
+export const sendMessageAC = (): ActionsTypes => {
+    return {
+        type: SEND_MESSAGE,
+    }
+}
+
 export default dialogsReducer

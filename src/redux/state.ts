@@ -38,12 +38,12 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
 type UpdateNewPostTextType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
+}
+type AddPostActionType = {
+    type: 'ADD-POST'
 }
 type UpdateNewMessageText = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
@@ -54,11 +54,6 @@ type SendMessageActionType = {
 }
 
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageText | SendMessageActionType
-
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
-const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export const store: StoreType = {
     _state: {
@@ -102,29 +97,6 @@ export const store: StoreType = {
 
         this._callSubscriber()
     },
-}
-
-export const addPostAC = (): ActionsTypes => {
-    return {
-        type: ADD_POST,
-    }
-}
-export const updateNewPostTextAC = (text: string): ActionsTypes => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text,
-    }
-}
-export const sendMessageAC = (): ActionsTypes => {
-    return {
-        type: SEND_MESSAGE,
-    }
-}
-export const updateNewMessageTextAC = (text: string): ActionsTypes => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newMessageText: text,
-    }
 }
 
 
