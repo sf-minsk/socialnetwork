@@ -1,23 +1,24 @@
-import {state, subscribe} from './redux/state';
+import {RootStateType, store} from './redux/state';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import reportWebVitals from './reportWebVitals';
-import {addPost, RootStateType, updateNewPostText} from "./redux/state";
 
-const rerenderEntireTree = (state:RootStateType) => {
+const rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
+            <App
+                state={state}
+                store={store}
+                dispatch={store.dispatch.bind(store)}
+            />
         </React.StrictMode>,
         document.getElementById('root')
     );
     reportWebVitals();
 }
 
-rerenderEntireTree(state)
+rerenderEntireTree(store.getState())
 
-subscribe(() => {
-    rerenderEntireTree(state)
-})
+store.subscribe(() => rerenderEntireTree(store.getState()))

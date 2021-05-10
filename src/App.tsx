@@ -8,15 +8,15 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {RootStateType} from './redux/state';
+import {ActionsTypes, RootStateType, StoreType} from './redux/state';
 
 type PropsType = {
     state: RootStateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
+    store: StoreType
 }
 
-export const App = (props: PropsType) => {
+export const App: React.FC<PropsType> = (props) => {
     return (
         <BrowserRouter>
             <div className="App-wrapper">
@@ -25,15 +25,14 @@ export const App = (props: PropsType) => {
                 <div className='app-wrapper-content'>
                     <Route path='/profile' render={() =>
                         <Profile
-                            profilePage={props.state.profilePage}
-                            addPost={props.addPost}
-                            updateNewPostText={props.updateNewPostText}
+                            store={props.store}
+                            dispatch={props.dispatch}
                         />}
                     />
                     <Route path='/dialogs' render={() =>
                         <Dialogs
-                            dialogs={props.state.dialogsPage.dialogs}
-                            messages={props.state.dialogsPage.messages}
+                            store={props.store}
+                            dispatch={props.dispatch}
                         />}
                     />
                     <Route path='/news' render={() => <News/>}/>
