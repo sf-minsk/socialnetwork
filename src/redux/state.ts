@@ -1,4 +1,7 @@
 import {v1} from 'uuid';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 export type PostsType = {
     id: string
@@ -25,6 +28,7 @@ export type DialogsPageType = {
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    sidebar: any
 }
 export type StoreType = {
     _state: RootStateType
@@ -79,7 +83,8 @@ export const store: StoreType = {
                 {id: v1(), message: 'Is good.'}
             ],
             newMessageText: '',
-        }
+        },
+        sidebar: {}
     },
     _callSubscriber() {
         console.log('state was changed')
@@ -90,35 +95,12 @@ export const store: StoreType = {
     subscribe(observer) {
         this._callSubscriber = observer//pattern observer
     },
-    dispatch(action) { //{type: 'ADD_POST}
-        if (action.type === ADD_POST) {
-            if (this._state.profilePage.newPostText) {
-                const newPost: PostsType = {
-                    id: v1(),
-                    message: this._state.profilePage.newPostText,
-                    likeCount: 0
-                }
-                this._state.profilePage.posts.push(newPost)
-                this._state.profilePage.newPostText = ('')
-            }
-            this._callSubscriber()
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber()
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = action.newMessageText
-            this._callSubscriber()
-        } else if (action.type === SEND_MESSAGE) {
-            if (this._state.dialogsPage.newMessageText) {
-                const newMessage: MessagesType = {
-                    id: v1(),
-                    message: this._state.dialogsPage.newMessageText,
-                }
-                this._state.dialogsPage.messages.push(newMessage)
-                this._state.dialogsPage.newMessageText = ('')
-            }
-            this._callSubscriber()
-        }
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._callSubscriber()
     },
 }
 
