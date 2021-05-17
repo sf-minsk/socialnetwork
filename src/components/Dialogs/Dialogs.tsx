@@ -2,27 +2,24 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {
-    ActionsTypes,
-    StoreType,
-} from "../../redux/state";
+import {ActionsTypes, DialogsPageType} from "../../redux/store";
 import {sendMessageAC, updateNewMessageTextAC} from "../../redux/dialogs-reducer";
 
 
 type PropsType = {
     dispatch: (action: ActionsTypes) => void
-    store: StoreType
+    state: DialogsPageType
 }
 
 export const Dialogs = (props: PropsType) => {
-
-    const dialogsElements = props.store._state.dialogsPage.dialogs.map((d: any) =>
+debugger
+    const dialogsElements  = props.state.dialogs.map((d: any) =>
         <DialogItem
             key={d.id}
             id={d.id}
             name={d.name}
         />)
-    const messagesElements = props.store._state.dialogsPage.messages.map((m: any) =>
+    const messagesElements = props.state.messages.map((m: any) =>
         <Message
             key={m.id}
             message={m.message}
@@ -46,7 +43,7 @@ export const Dialogs = (props: PropsType) => {
                 <div>
                     <div>
                         <textarea
-                            value={props.store._state.dialogsPage.newMessageText}
+                            value={props.state.newMessageText}
                             onChange={onNewMessageChange}
                             placeholder={'Enter you message'}/>
                     </div>

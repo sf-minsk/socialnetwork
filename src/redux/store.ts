@@ -20,6 +20,8 @@ export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
+export type SidebarType = {}
+
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
@@ -28,7 +30,7 @@ export type DialogsPageType = {
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidebar: any
+    sidebar: SidebarType
 }
 export type StoreType = {
     _state: RootStateType

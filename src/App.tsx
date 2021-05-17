@@ -8,12 +8,11 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {ActionsTypes, RootStateType, StoreType} from './redux/state';
+import {ActionsTypes, RootStateType} from './redux/store';
 
 type PropsType = {
-    state: RootStateType
     dispatch: (action: ActionsTypes) => void
-    store: StoreType
+    state: RootStateType
 }
 
 export const App: React.FC<PropsType> = (props) => {
@@ -25,13 +24,13 @@ export const App: React.FC<PropsType> = (props) => {
                 <div className='app-wrapper-content'>
                     <Route path='/profile' render={() =>
                         <Profile
-                            store={props.store}
+                            state={props.state.profilePage}
                             dispatch={props.dispatch}
                         />}
                     />
                     <Route path='/dialogs' render={() =>
                         <Dialogs
-                            store={props.store}
+                            state={props.state.dialogsPage}
                             dispatch={props.dispatch}
                         />}
                     />

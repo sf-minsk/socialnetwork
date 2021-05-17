@@ -1,16 +1,16 @@
-import {RootStateType, store} from './redux/state';
+import {store} from './redux/redux-store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import reportWebVitals from './reportWebVitals';
+import {RootStateType} from "./redux/store";
 
 const rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <App
                 state={state}
-                store={store}
                 dispatch={store.dispatch.bind(store)}
             />
         </React.StrictMode>,
