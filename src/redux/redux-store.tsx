@@ -10,7 +10,5 @@ const reducers = combineReducers({
     sidebar: sidebarReducer,
 });
 
-
-
-export const store = createStore(reducers);
+export const store: StoreType = createStore(reducers);
 
