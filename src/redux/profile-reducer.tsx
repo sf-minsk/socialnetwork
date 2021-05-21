@@ -1,18 +1,30 @@
 import {v1} from "uuid";
-import {ActionsTypes, PostsType, ProfilePageType} from "./store";
+import {ActionsTypes} from "./store";
 
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 
-const initialState = {
-        posts: [
-            {id: v1(), message: 'Hello', likeCount: 41},
-            {id: v1(), message: 'How are u?', likeCount: 20}
-        ],
-        newPostText: '',
-    }
+export type PostsType = {
+    id: string
+    message: string
+    likeCount: number
+}
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
+export type InitialStateType = {
+    posts: Array<PostsType>
+    newPostText: string
+}
+
+
+const initialState: InitialStateType = {
+    posts: [
+        {id: v1(), message: 'Hello', likeCount: 41},
+        {id: v1(), message: 'How are u?', likeCount: 20}
+    ],
+    newPostText: '',
+}
+
+const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case UPDATE_NEW_POST_TEXT:
             state.newPostText = action.newText

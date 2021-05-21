@@ -3,26 +3,26 @@ import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 
-export type PostsType = {
+type PostsType = {
     id: string
     message: string
     likeCount: number
 }
-export type DialogsType = {
+type DialogsType = {
     id: string
     name: string
 }
-export type MessagesType = {
+type MessagesType = {
     id: string
     message: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
 export type SidebarType = {}
 
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageText: string
