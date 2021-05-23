@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import reportWebVitals from './reportWebVitals';
-import {RootStateType} from "./redux/store";
 import {Provider} from "react-redux";
 
 ReactDOM.render(

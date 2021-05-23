@@ -12,7 +12,6 @@ type PropsType = {
 }
 
 export const Dialogs = (props: PropsType) => {
-    debugger
     const dialogsElements = props.dialogsPage.dialogs.map((d: any) =>
         <DialogItem
             key={d.id}
