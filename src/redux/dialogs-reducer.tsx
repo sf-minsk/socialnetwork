@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import { ActionsTypes } from "./store";
+import {ActionsTypes} from "./store";
 
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 const SEND_MESSAGE = 'SEND-MESSAGE'
@@ -21,7 +21,6 @@ export type InitialStateType = {
 }
 
 
-
 const initialState = {
     dialogs: [
         {id: v1(), name: 'Jane'},
@@ -40,19 +39,21 @@ const initialState = {
 
 const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageText
-            return state
-        case SEND_MESSAGE:
-            if (state.newMessageText) {
-                const newMessage: MessagesType = {
-                    id: v1(),
-                    message: state.newMessageText,
-                }
-                state.messages.push(newMessage)
-                state.newMessageText = ('')
+        case UPDATE_NEW_MESSAGE_TEXT: {
+            const stateCopy = {...state}
+            stateCopy.newMessageText = action.newMessageText
+            return stateCopy
+        }
+        case SEND_MESSAGE: {
+            const stateCopy = {...state}
+            const newMessage: MessagesType = {
+                id: v1(),
+                message: stateCopy.newMessageText,
             }
-            return state
+            stateCopy.messages.push(newMessage)
+            stateCopy.newMessageText = ('')
+            return stateCopy
+        }
         default:
             return state
     }
