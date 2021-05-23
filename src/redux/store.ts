@@ -2,6 +2,7 @@ import {v1} from 'uuid';
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import {UsersType} from "./users-reducer";
 
 type PostsType = {
     id: string
@@ -54,8 +55,23 @@ type UpdateNewMessageText = {
 type SendMessageActionType = {
     type: 'SEND-MESSAGE'
 }
+type FollowActionType = {
+    type: 'FOLLOW'
+    userID: string
+}
+type UnFollowActionType = {
+    type: 'UNFOLLOW'
+    userID: string
+}
+type SetUsersActionType = {
+    type: 'SET_USERS'
+    users: Array<UsersType>
+}
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageText | SendMessageActionType
+
+
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageText | SendMessageActionType | FollowActionType | UnFollowActionType | SetUsersActionType
 
 export const store: StoreType = {
     _state: {
