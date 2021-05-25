@@ -3,16 +3,19 @@ import {InitialStateType, sendMessageAC, updateNewMessageTextAC} from "../../red
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
+
 
 type MapStatePropsType = {
     dialogsPage: InitialStateType
 }
 
-type MapDispatchProps = {
-    updateNewMessageTextAC: (text: string) => void
-    sendMessageAC: () => void
+type MapDispatchPropsType = {
+    updateNewMessageText: (text: string) => void
+    sendMessage: () => void
 }
 
+export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
@@ -20,12 +23,12 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
     }
 }
-const mapDispatchToProps = (dispatch: any): MapDispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        updateNewMessageTextAC: (text: string) => {
+        updateNewMessageText: (text) => {
             dispatch(updateNewMessageTextAC(text))
         },
-        sendMessageAC: () => {
+        sendMessage: () => {
             dispatch(sendMessageAC())
         },
     }

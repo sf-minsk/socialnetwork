@@ -1,4 +1,3 @@
-import {v1} from "uuid";
 import {ActionsTypes} from "./store";
 
 const FOLLOW = 'FOLLOW';
@@ -20,9 +19,7 @@ export type InitialStateType = {
 }
 
 const initialState: InitialStateType = {
-    users: [
-
-    ],
+    users: [],
 }
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
@@ -48,7 +45,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
                 }),
             }
         case SET_USERS: {
-            return {...state, users: [...state.users, ...action.users ]}
+            return {...state, users: [...state.users, ...action.users]}
         }
         default:
             return state
