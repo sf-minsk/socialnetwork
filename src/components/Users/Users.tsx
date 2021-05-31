@@ -2,23 +2,21 @@ import React from "react";
 import styles from './users.module.css'
 import axios from "axios";
 import userPhoto from '../../assets/images/userWhithoutAvatar.png'
+import {UsersPropsType} from "./UsersContainer";
 
 
-export class Users extends React.Component<any, any> {
+export class Users extends React.Component<UsersPropsType> {
 
-    getUsers = () => {
-        if (this.props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users")
-                .then(response => {
-                    this.props.setUsers(response.data.items)
-                });
-        }
+    constructor(props: any) {
+        super(props);
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            });
     }
-
 
     render() {
         return <div>
-            <button onClick={this.getUsers}>getUsers</button>
             {
                 this.props.users.map((u: any) => <div key={u.id}>
                 <span>
