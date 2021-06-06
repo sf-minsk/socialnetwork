@@ -6,3 +6,8 @@
 .content .descriptionBlock {
     padding: 10px;
 }
+
+.content .descriptionBlock img {
+    width: 140px;
+    height: 140px;
+}

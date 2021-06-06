@@ -3,6 +3,7 @@ import {ActionsTypes} from "./store";
 
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
+const SET_USER_PROFILE = 'SET-USER-PROFILE'
 
 export type PostsType = {
     id: string
@@ -10,9 +11,32 @@ export type PostsType = {
     likeCount: number
 }
 
+export type UsersProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: string
+        github: string
+        mainLink: string
+    }
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
+
 export type InitialStateType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: UsersProfileType | null
 }
 
 
@@ -22,6 +46,7 @@ const initialState: InitialStateType = {
         {id: v1(), message: 'How are u?', likeCount: 20}
     ],
     newPostText: '',
+    profile: null,
 }
 
 const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
@@ -43,6 +68,11 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
                 posts: [...state.posts, newPost],
                 newPostText: (''),
             }
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile,
+            }
 
         default:
             return state
@@ -61,5 +91,12 @@ export const addPostAC = (): ActionsTypes => {
         type: ADD_POST,
     }
 }
+export const setUserProfile = (profile: UsersProfileType): ActionsTypes => {
+    return {
+        type: SET_USER_PROFILE,
+        profile,
+    }
+}
+
 
 export default profileReducer

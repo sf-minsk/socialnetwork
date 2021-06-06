@@ -3,6 +3,7 @@ import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import {UsersType} from "./users-reducer";
+import {AppStateType} from "./redux-store";
 
 type PostsType = {
     id: string
@@ -21,6 +22,7 @@ type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
+
 export type SidebarType = {}
 
 type DialogsPageType = {
@@ -79,14 +81,13 @@ type toggleIsFetchingActionType = {
     type: 'TOGGLE-IS-FETCHING'
     isFetching: boolean
 }
+type setUserProfileActionType = {
+    type: 'SET-USER-PROFILE'
+    profile: any
+}
 
 
-
-
-
-
-
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageText | SendMessageActionType | FollowActionType | UnFollowActionType | SetUsersActionType | SetCurrentPageActionType | SetUsersTotalCountActionType | toggleIsFetchingActionType
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageText | SendMessageActionType | FollowActionType | UnFollowActionType | SetUsersActionType | SetCurrentPageActionType | SetUsersTotalCountActionType | toggleIsFetchingActionType | setUserProfileActionType
 
 export const store: StoreType = {
     _state: {
@@ -124,9 +125,9 @@ export const store: StoreType = {
         this._callSubscriber = observer//pattern observer
     },
     dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+    //     this._state.profilePage = profileReducer(this._state.profilePage, action)
+    //     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+    //     this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
         this._callSubscriber()
     },
