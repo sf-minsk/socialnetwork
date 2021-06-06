@@ -10,7 +10,6 @@ type PropsType = {
 
 
 export const ProfileInfo = (props: PropsType) => {
-    debugger
     if (!props.profile) {
         return <Preloader/>
     }
@@ -18,10 +17,10 @@ export const ProfileInfo = (props: PropsType) => {
     return (
         <div className={s.content}>
             <div>
-                <img src={logo}/>
+                <img src={logo} alt={'logo'}/>
             </div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
+                <img src={props.profile.photos.large} alt={'userPhoto'}/>
                 avatar + description
             </div>
         </div>
