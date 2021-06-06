@@ -67,11 +67,26 @@ type SetUsersActionType = {
     type: 'SET_USERS'
     users: Array<UsersType>
 }
+type SetCurrentPageActionType = {
+    type: 'SET-CURRENT-PAGE'
+    currentPage: number
+}
+type SetUsersTotalCountActionType = {
+    type: 'SET-USERS-TOTAL-COUNT'
+    totalCount: number
+}
+type toggleIsFetchingActionType = {
+    type: 'TOGGLE-IS-FETCHING'
+    isFetching: boolean
+}
 
 
 
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageText | SendMessageActionType | FollowActionType | UnFollowActionType | SetUsersActionType
+
+
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageText | SendMessageActionType | FollowActionType | UnFollowActionType | SetUsersActionType | SetCurrentPageActionType | SetUsersTotalCountActionType | toggleIsFetchingActionType
 
 export const store: StoreType = {
     _state: {
