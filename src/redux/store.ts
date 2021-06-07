@@ -1,9 +1,6 @@
 import {v1} from 'uuid';
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import {UsersProfileType} from "./profile-reducer";
 import {UsersType} from "./users-reducer";
-import {AppStateType} from "./redux-store";
 
 type PostsType = {
     id: string
@@ -83,11 +80,22 @@ type toggleIsFetchingActionType = {
 }
 type setUserProfileActionType = {
     type: 'SET-USER-PROFILE'
-    profile: any
+    profile: UsersProfileType
 }
 
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageText | SendMessageActionType | FollowActionType | UnFollowActionType | SetUsersActionType | SetCurrentPageActionType | SetUsersTotalCountActionType | toggleIsFetchingActionType | setUserProfileActionType
+export type ActionsTypes =
+    AddPostActionType
+    | UpdateNewPostTextType
+    | UpdateNewMessageText
+    | SendMessageActionType
+    | FollowActionType
+    | UnFollowActionType
+    | SetUsersActionType
+    | SetCurrentPageActionType
+    | SetUsersTotalCountActionType
+    | toggleIsFetchingActionType
+    | setUserProfileActionType
 
 export const store: StoreType = {
     _state: {
@@ -125,9 +133,9 @@ export const store: StoreType = {
         this._callSubscriber = observer//pattern observer
     },
     dispatch(action) {
-    //     this._state.profilePage = profileReducer(this._state.profilePage, action)
-    //     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-    //     this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        //     this._state.profilePage = profileReducer(this._state.profilePage, action)
+        //     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        //     this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
         this._callSubscriber()
     },

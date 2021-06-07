@@ -5,7 +5,7 @@ import {Preloader} from "../../Common/Preloader/Preloader";
 import {UsersProfileType} from "../../../redux/profile-reducer";
 
 type PropsType = {
-    profile: UsersProfileType
+    profile: UsersProfileType | null
 }
 
 

@@ -10,7 +10,7 @@ type PathParamsType = {
     userId: string
 }
 type mapStateToPropsType = {
-    profile: UsersProfileType
+    profile: UsersProfileType | null
 }
 type mapDispatchToPropsType = {
     setUserProfile: (profile: UsersProfileType) => void
