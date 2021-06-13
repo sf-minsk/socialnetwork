@@ -9,3 +9,11 @@
     background-color: #75dea5;
     border-bottom: 1px solid black;
 }
+
+.loginBlock {
+    float: right;
+}
+
+.loginBlock a {
+    color: black;
+}

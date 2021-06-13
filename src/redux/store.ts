@@ -1,44 +1,9 @@
-import {v1} from 'uuid';
-import {UsersProfileType} from "./profile-reducer";
-import {UsersType} from "./users-reducer";
-
-type PostsType = {
-    id: string
-    message: string
-    likeCount: number
-}
-type DialogsType = {
-    id: string
-    name: string
-}
-type MessagesType = {
-    id: string
-    message: string
-}
-type ProfilePageType = {
-    posts: Array<PostsType>
-    newPostText: string
-}
-
-export type SidebarType = {}
-
-type DialogsPageType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
-    newMessageText: string
-}
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebar: SidebarType
-}
-export type StoreType = {
-    _state: RootStateType
-    _callSubscriber: () => void
-    getState: () => RootStateType
-    subscribe: (observer: () => void) => void
-    dispatch: (action: ActionsTypes) => void
-}
+import {combineReducers, createStore} from "redux";
+import profileReducer, {UsersProfileType} from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+import usersReducer, {UsersType} from "./users-reducer";
+import authReducer from "./auth-reducer";
 
 type UpdateNewPostTextType = {
     type: 'UPDATE-NEW-POST-TEXT'
@@ -83,6 +48,14 @@ type setUserProfileActionType = {
     profile: UsersProfileType
 }
 
+type setUserDataActionType = {
+    type: 'SET-USER-DATA'
+    data: {
+        id: number
+        email: string
+        login: string
+    }
+}
 
 export type ActionsTypes =
     AddPostActionType
@@ -96,49 +69,20 @@ export type ActionsTypes =
     | SetUsersTotalCountActionType
     | toggleIsFetchingActionType
     | setUserProfileActionType
-
-export const store: StoreType = {
-    _state: {
-        profilePage: {
-            posts: [
-                {id: v1(), message: 'Hello', likeCount: 41},
-                {id: v1(), message: 'How are u?', likeCount: 20}
-            ],
-            newPostText: '',
-        },
-        dialogsPage: {
-            dialogs: [
-                {id: v1(), name: 'Jane'},
-                {id: v1(), name: 'Maxim'},
-                {id: v1(), name: 'Liza'},
-                {id: v1(), name: 'Alex'},
-                {id: v1(), name: 'Sam'}
-            ],
-            messages: [
-                {id: v1(), message: 'Hi!'},
-                {id: v1(), message: 'How is your learning?'},
-                {id: v1(), message: 'Is good.'}
-            ],
-            newMessageText: '',
-        },
-        sidebar: {}
-    },
-    _callSubscriber() {
-        console.log('state was changed')
-    },
-    getState() {
-        return this._state
-    },
-    subscribe(observer) {
-        this._callSubscriber = observer//pattern observer
-    },
-    dispatch(action) {
-        //     this._state.profilePage = profileReducer(this._state.profilePage, action)
-        //     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        //     this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-
-        this._callSubscriber()
-    },
-}
+    | setUserDataActionType
 
 
+const rootReducer = combineReducers({
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sidebar: sidebarReducer,
+    usersPage: usersReducer,
+    auth: authReducer,
+});
+
+export type AppStateType = ReturnType<typeof rootReducer>
+
+export const store = createStore(rootReducer);
+
+// @ts-ignore
+window.store = store
