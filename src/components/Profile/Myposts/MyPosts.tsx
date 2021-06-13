@@ -19,7 +19,6 @@ export const MyPosts = (props: PropsType) => {
         props.addPost()
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        debugger
         const text = e.currentTarget.value
         props.updateNewPostText(text)
     }
