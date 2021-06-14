@@ -2,10 +2,11 @@ import {ActionsTypes} from "./store";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
+const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_USERS_TOTAL_COUNT = 'SET-USERS-TOTAL-COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
+const TOGGLE_THE_FOLLOWING_PROGRESS = 'TOGGLE-THE-FOLLOWING-PROGRESS'
 
 
 export type UsersType = {
@@ -23,6 +24,7 @@ export type InitialStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgressArray: Array<string>
 }
 
 const initialState: InitialStateType = {
@@ -31,6 +33,7 @@ const initialState: InitialStateType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
+    followingInProgressArray: []
 }
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
@@ -67,6 +70,14 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
         }
+        case TOGGLE_THE_FOLLOWING_PROGRESS: {
+            return {
+                ...state, followingInProgressArray: action.isFetching
+                    ? [...state.followingInProgressArray, action.userId]
+                    : state.followingInProgressArray.filter(id => id !== action.userId)
+            }
+
+        }
 
 
         default:
@@ -82,9 +93,14 @@ export const setUsers = (users: Array<UsersType>): ActionsTypes => ({type: SET_U
 export const setCurrentPage = (currentPage: number): ActionsTypes => ({type: SET_CURRENT_PAGE, currentPage})
 export const setUsersTotalCount = (usersTotalCount: number): ActionsTypes => ({
     type: SET_USERS_TOTAL_COUNT,
-    totalCount: usersTotalCount
+    totalCount: usersTotalCount,
 })
 export const toggleIsFetching = (isFetching: boolean): ActionsTypes => ({type: TOGGLE_IS_FETCHING, isFetching})
+export const toggleTheFollowingProgress = (isFetching: boolean, userId: string): ActionsTypes => ({
+    type: TOGGLE_THE_FOLLOWING_PROGRESS,
+    isFetching,
+    userId,
+})
 
 
 export default usersReducer

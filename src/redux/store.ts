@@ -28,7 +28,7 @@ type UnFollowActionType = {
     userID: string
 }
 type SetUsersActionType = {
-    type: 'SET_USERS'
+    type: 'SET-USERS'
     users: Array<UsersType>
 }
 type SetCurrentPageActionType = {
@@ -57,6 +57,12 @@ type setUserDataActionType = {
     }
 }
 
+type toggleTheFollowingProgress = {
+    type: 'TOGGLE-THE-FOLLOWING-PROGRESS'
+    isFetching: boolean
+    userId: string
+}
+
 export type ActionsTypes =
     AddPostActionType
     | UpdateNewPostTextType
@@ -70,6 +76,7 @@ export type ActionsTypes =
     | toggleIsFetchingActionType
     | setUserProfileActionType
     | setUserDataActionType
+    | toggleTheFollowingProgress
 
 
 const rootReducer = combineReducers({
