@@ -16,6 +16,14 @@ export const usersAPI = {
             .get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
     },
+    setUnfollowUser(id: string) {
+        return instance.delete(`follow/${id}`)
+            .then(response => response.data)
+    },
+    setFollowUser(id: string) {
+        return instance.post(`follow/${id}`)
+            .then(response => response.data)
+    },
 }
 export const profileAPI = {
     getProfile(userId: string) {
@@ -29,17 +37,6 @@ export const authAPI = {
             .then(response => response.data)
     },
 }
-export const followUnfollowAPI = {
-    setUnfollowUser(id: string) {
-        return instance.delete(`follow/${id}`)
-            .then(response => response.data)
-    },
-    setFollowUser(id: string) {
-        return instance.post(`follow/${id}`)
-            .then(response => response.data)
-    },
-}
-
 
 
 

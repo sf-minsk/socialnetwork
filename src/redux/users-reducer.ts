@@ -89,8 +89,8 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
 }
 
 
-export const follow = (userID: string): ActionsTypes => ({type: FOLLOW, userID})
-export const unfollow = (userID: string): ActionsTypes => ({type: UNFOLLOW, userID})
+export const followSuccess = (userID: string): ActionsTypes => ({type: FOLLOW, userID})
+export const unfollowSuccess = (userID: string): ActionsTypes => ({type: UNFOLLOW, userID})
 export const setUsers = (users: Array<UsersType>): ActionsTypes => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage: number): ActionsTypes => ({type: SET_CURRENT_PAGE, currentPage})
 export const setUsersTotalCount = (usersTotalCount: number): ActionsTypes => ({
@@ -104,13 +104,36 @@ export const toggleTheFollowingProgress = (isFetching: boolean, userId: string):
     userId,
 })
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(toggleIsFetching(true))
     usersAPI.getUsers(currentPage, pageSize)
         .then(data => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
             dispatch(setUsersTotalCount(data.totalCount));
+        });
+}
+
+
+export const follow = (userId: string) => (dispatch: Dispatch) => {
+    dispatch(toggleTheFollowingProgress(true, userId))
+    usersAPI.setFollowUser(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(followSuccess(userId))
+            }
+            dispatch(toggleTheFollowingProgress(false, userId))
+        });
+}
+
+export const unFollow = (userId: string) => (dispatch: Dispatch) => {
+    dispatch(toggleTheFollowingProgress(true, userId))
+    usersAPI.setUnfollowUser(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(toggleTheFollowingProgress(false, userId))
         });
 }
 
