@@ -17,23 +17,27 @@ export const usersAPI = {
             .then(response => response.data)
     },
     setUnfollowUser(id: string) {
-        return instance.delete(`follow/${id}`)
+        return instance
+            .delete(`follow/${id}`)
             .then(response => response.data)
     },
     setFollowUser(id: string) {
-        return instance.post(`follow/${id}`)
+        return instance
+            .post(`follow/${id}`)
             .then(response => response.data)
     },
 }
 export const profileAPI = {
     getProfile(userId: string) {
-        return instance.get(`profile/` + userId)
+        return instance
+            .get(`profile/` + userId)
             .then(response => response.data)
     },
 }
 export const authAPI = {
     getAuthHeader() {
-        return instance.get(`auth/me`)
+        return instance
+            .get(`auth/me`)
             .then(response => response.data)
     },
 }
