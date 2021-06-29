@@ -41,7 +41,6 @@ class ProfileContainer extends React.Component<PropsType> {
 }
 
 
-
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
@@ -50,9 +49,9 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile}),
+    // withAuthRedirect,
     withRouter,
-    withAuthRedirect
+    connect(mapStateToProps, {getUserProfile})
 )(ProfileContainer)
 
 

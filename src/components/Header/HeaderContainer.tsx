@@ -17,11 +17,14 @@ type PropsType = mapStateToPropsType & mapDispatchToPropsType
 
 
 class HeaderContainer extends React.Component<PropsType> {
-    componentDidMount() {
-
-
+    componentWillMount() {
         this.props.getAuthUserData()
     }
+
+
+    // componentDidMount() {
+    //     this.props.getAuthUserData()
+    // }
 
     render() {
         return <Header {...this.props} />
