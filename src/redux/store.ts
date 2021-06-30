@@ -58,11 +58,17 @@ type setUserDataActionType = {
     }
 }
 
+type setStatus = {
+    type: 'SET-USER-STATUS'
+    status: string
+}
+
 type toggleTheFollowingProgress = {
     type: 'TOGGLE-THE-FOLLOWING-PROGRESS'
     isFetching: boolean
     userId: string
 }
+
 
 export type ActionsTypes =
     AddPostActionType
@@ -78,6 +84,7 @@ export type ActionsTypes =
     | setUserProfileActionType
     | setUserDataActionType
     | toggleTheFollowingProgress
+    | setStatus
 
 
 const rootReducer = combineReducers({
