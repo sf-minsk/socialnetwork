@@ -1,37 +1,45 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {PostsType} from "../../../redux/profile-reducer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 type PropsType = {
-    newPostText: string
     posts: Array<PostsType>
-    updateNewPostText: (text: string) => void
-    addPost: () => void
+    addPost: (newPostBody: string) => void
+}
+type FormDataType = {
+    newPostBody: string
+}
+const AddPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field
+                    component='textarea'
+                    name='newPostBody'
+                    placeholder='Enter Your Post Message'/>
+            </div>
+            <div>
+                <button>POST</button>
+            </div>
+        </form>
+    )
 }
 
-export const MyPosts = (props: PropsType) => {
+const AddPostFormRedux = reduxForm<FormDataType>({form: 'ProfileAddNewPostForm'})(AddPostForm)
 
+export const MyPosts = (props: PropsType) => {
     const postsElements = props.posts.map(p =>
         <Post key={p.id} message={p.message} likeCount={p.likeCount}/>
     )
-    const addPost = () => {
-        props.addPost()
+    const onAddNewPost = (values: FormDataType) => {
+        props.addPost(values.newPostBody)
     }
-    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const text = e.currentTarget.value
-        props.updateNewPostText(text)
-    }
-
     return (
         <div className={s.postsBlock}>
             <div><h3> my posts </h3></div>
-            <div>
-                <div><textarea onChange={onPostChange} value={props.newPostText}/></div>
-                <div>
-                    <button onClick={addPost}>POST</button>
-                </div>
-            </div>
+            <AddPostFormRedux onSubmit={onAddNewPost}/>
             <div className={s.posts}> {postsElements}  </div>
         </div>
     )
