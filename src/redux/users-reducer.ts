@@ -105,21 +105,13 @@ export const toggleTheFollowingProgress = (isFetching: boolean, userId: string) 
     userId,
 } as const)
 
-export type FollowSuccessActionType = ReturnType<typeof followSuccess>
-export type UnfollowSuccessActionType = ReturnType<typeof unfollowSuccess>
-export type SetUsersActionType = ReturnType<typeof setUsers>
-export type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
-export type SetUsersTotalCountActionType = ReturnType<typeof setUsersTotalCount>
-export type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>
-export type ToggleTheFollowingProgressActionType = ReturnType<typeof toggleTheFollowingProgress>
-
-export type UsersActionType = FollowSuccessActionType
-    | UnfollowSuccessActionType
-    | SetUsersActionType
-    | SetCurrentPageActionType
-    | SetUsersTotalCountActionType
-    | ToggleIsFetchingActionType
-    | ToggleTheFollowingProgressActionType
+export type UsersActionType = ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setUsersTotalCount>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof toggleTheFollowingProgress>
 
 export const getUsers = (currentPage: number, pageSize: number): AppThunkType => async dispatch => {
     dispatch(toggleIsFetching(true))

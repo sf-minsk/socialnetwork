@@ -92,11 +92,9 @@ export const setUserProfile = (profile: UsersProfileType) => {
     } as const
 }
 
-export type AddPostActionType = ReturnType<typeof addPostAC>
-export type SetStatusActionType = ReturnType<typeof setStatusAC>
-export type SetUserActionType = ReturnType<typeof setUserProfile>
-
-export type ProfileActionType = AddPostActionType | SetStatusActionType | SetUserActionType
+export type ProfileActionType = ReturnType<typeof addPostAC>
+    | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof setUserProfile>
 
 export const getUserProfile = (userId: string): AppThunkType => async dispatch => {
     const res = await profileAPI.getProfile(userId)

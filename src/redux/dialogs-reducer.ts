@@ -57,7 +57,6 @@ export const sendMessageAC = (newMessageBody: string) => {
     } as const
 }
 
-export type SendMessageActionType = ReturnType<typeof sendMessageAC>
-export type DialogsActionType = SendMessageActionType
+export type DialogsActionType = ReturnType<typeof sendMessageAC>
 
 export default dialogsReducer
