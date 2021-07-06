@@ -1,6 +1,5 @@
-import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
-import {AppActionsType, AppThunkType} from "./store";
+import {AppThunkType} from "./store";
 
 enum Type {
     SET_USER_DATA = 'SET-USER-DATA',
@@ -33,37 +32,34 @@ const authReducer = (state: AuthType = initialState, action: AuthActionTypes): A
     }
 }
 
-export const setAuthUserData = (id: number, email: string, login: string) => ({
+export const setAuthUserData = (id: number, email: string, login: string, isAuth: boolean) => ({
     type: Type.SET_USER_DATA,
-    payload: {id, email, login},
+    payload: {id, email, login, isAuth},
 } as const)
-export const getAuthUserData = () => (dispatch: Dispatch<AppActionsType>) => {
-    authAPI.getAuthHeader()
-        .then(data => {
-            if (data.resultCode === 0) {
-                let {id, email, login} = data.data
-                dispatch(setAuthUserData(id, email, login))
-            }
-        });
-}
+
 
 export type SetAuthUserDataActionType = ReturnType<typeof setAuthUserData>
 export type AuthActionTypes = SetAuthUserDataActionType
 
+export const getAuthUserData = (): AppThunkType => async dispatch => {
+    const res = await authAPI.getAuthHeader()
+    if (res.resultCode === 0) {
+        const {id, email, login, isAuth} = res.data
+        dispatch(setAuthUserData(id, email, login, isAuth))
+    }
+}
 export const login = (email: string, password: string, rememberMe: boolean): AppThunkType => async dispatch => {
-    let res = await authAPI.login(email, password, rememberMe)
+    const res = await authAPI.login(email, password, rememberMe)
     if (res.data.resultCode === 0) {
         dispatch(getAuthUserData())
     }
 }
 export const logout = (): AppThunkType => async dispatch => {
-    let res = await authAPI.logout()
+    const res = await authAPI.logout()
     if (res.data.resultCode === 0) {
         dispatch(getAuthUserData())
     }
 }
-
-
 
 
 export default authReducer

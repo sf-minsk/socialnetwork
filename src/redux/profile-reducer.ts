@@ -99,15 +99,15 @@ export type SetUserActionType = ReturnType<typeof setUserProfile>
 export type ProfileActionType = AddPostActionType | SetStatusActionType | SetUserActionType
 
 export const getUserProfile = (userId: string): AppThunkType => async dispatch => {
-    let res = await profileAPI.getProfile(userId)
+    const res = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(res))
 }
 export const getStatus = (userId: string): AppThunkType => async dispatch => {
-    let res = await profileAPI.getStatus(userId)
+    const res = await profileAPI.getStatus(userId)
     dispatch(setStatusAC(res.data))
 }
 export const updateStatus = (status: string): AppThunkType => async dispatch => {
-    let res = await profileAPI.updateStatus(status)
+    const res = await profileAPI.updateStatus(status)
     if (res.data.resultCode === 0) {
         dispatch(setStatusAC(status))
     }

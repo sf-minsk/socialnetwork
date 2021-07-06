@@ -123,14 +123,14 @@ export type UsersActionType = FollowSuccessActionType
 
 export const getUsers = (currentPage: number, pageSize: number): AppThunkType => async dispatch => {
     dispatch(toggleIsFetching(true))
-    let res = await usersAPI.getUsers(currentPage, pageSize)
+    const res = await usersAPI.getUsers(currentPage, pageSize)
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(res.items));
     dispatch(setUsersTotalCount(res.totalCount));
 }
 export const follow = (userId: string): AppThunkType => async dispatch => {
     dispatch(toggleTheFollowingProgress(true, userId))
-    let res = await usersAPI.setFollowUser(userId)
+    const res = await usersAPI.setFollowUser(userId)
     if (res.resultCode === 0) {
         dispatch(followSuccess(userId))
     }
@@ -138,7 +138,7 @@ export const follow = (userId: string): AppThunkType => async dispatch => {
 }
 export const unFollow = (userId: string): AppThunkType => async dispatch => {
     dispatch(toggleTheFollowingProgress(true, userId))
-    let res = await usersAPI.setUnfollowUser(userId)
+    const res = await usersAPI.setUnfollowUser(userId)
     if (res.resultCode === 0) {
         dispatch(unfollowSuccess(userId))
     }
