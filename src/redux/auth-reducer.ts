@@ -1,5 +1,6 @@
 import {authAPI} from "../api/api";
 import {AppThunkType} from "./store";
+import {stopSubmit} from "redux-form";
 
 enum Type {
     SET_USER_DATA = 'SET-USER-DATA',
@@ -46,9 +47,14 @@ export const getAuthUserData = (): AppThunkType => async dispatch => {
     }
 }
 export const login = (email: string, password: string, rememberMe: boolean): AppThunkType => async dispatch => {
+
     const res = await authAPI.login(email, password, rememberMe)
     if (res.data.resultCode === 0) {
         dispatch(getAuthUserData())
+    } else {
+        let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Some error'
+        let action: any = stopSubmit('login', {_error: message})
+        dispatch(action)
     }
 }
 export const logout = (): AppThunkType => async dispatch => {
