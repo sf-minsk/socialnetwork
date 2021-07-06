@@ -1,8 +1,8 @@
 import {v1} from "uuid";
-import {ActionsTypes} from "./store";
 
-const SEND_MESSAGE = 'SEND-MESSAGE'
-
+enum Type {
+    SEND_MESSAGE = 'SEND-MESSAGE',
+}
 
 export type DialogsType = {
     id: string
@@ -17,7 +17,6 @@ export type InitialStateType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
 }
-
 
 const initialState = {
     dialogs: [
@@ -34,9 +33,9 @@ const initialState = {
     ],
 }
 
-const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
+const dialogsReducer = (state: InitialStateType = initialState, action: DialogsActionType): InitialStateType => {
     switch (action.type) {
-        case SEND_MESSAGE: {
+        case Type.SEND_MESSAGE: {
             const newMessage: MessagesType = {
                 id: v1(),
                 message: action.newMessageBody,
@@ -51,12 +50,14 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
     }
 }
 
-
-export const sendMessageAC = (newMessageBody: string): ActionsTypes => {
+export const sendMessageAC = (newMessageBody: string) => {
     return {
-        type: SEND_MESSAGE,
+        type: Type.SEND_MESSAGE,
         newMessageBody,
-    }
+    } as const
 }
+
+export type SendMessageActionType = ReturnType<typeof sendMessageAC>
+export type DialogsActionType = SendMessageActionType
 
 export default dialogsReducer

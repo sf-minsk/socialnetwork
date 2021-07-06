@@ -2,6 +2,7 @@ import {addPostAC, PostsType} from '../../../redux/profile-reducer';
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/store";
+import {Dispatch} from "redux";
 
 type MapStateToPropsType = {
     posts: Array<PostsType>
@@ -14,7 +15,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         posts: state.profilePage.posts,
     }
 }
-const mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         addPost: (newPostBody: string) => {
             dispatch(addPostAC(newPostBody))

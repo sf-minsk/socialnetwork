@@ -15,7 +15,7 @@ export const Login = () => {
     }
     return <>
         <h1>LOGIN</h1>
-        <ReduxLoginForm onSubmit={onSubmit}/>
+        <LoginFormRedux onSubmit={onSubmit}/>
     </>
 }
 
@@ -52,4 +52,4 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     )
 }
 
-const ReduxLoginForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
+const LoginFormRedux = reduxForm<FormDataType>({form: 'login'})(LoginForm)

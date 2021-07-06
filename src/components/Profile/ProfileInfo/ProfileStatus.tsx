@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.css'
 
 type PropsType = {
@@ -27,13 +27,13 @@ export class ProfileStatus extends React.Component<PropsType> {
         this.props.updateStatus(this.state.status)
     }
 
-    onStatusChange = (e: any) => {
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             status: e.currentTarget.value
         })
     }
 
-    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>) {
         if (prevProps.status !== this.props.status) {
             this.setState({status: this.props.status})
         }
