@@ -39,15 +39,15 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
 
 export type AuthActionTypes = ReturnType<typeof setAuthUserData>
 
-export const getAuthUserData = (): AppThunkType => async dispatch => {
-    const res = await authAPI.getAuthHeader()
+export const getAuthUserData = (): AppThunkType => async (dispatch) => {
+    const res = await authAPI.getAuthMe()
     if (res.resultCode === 0) {
         const {id, email, login} = res.data
         dispatch(setAuthUserData(id, email, login, true))
     }
+    return res
 }
 export const login = (email: string, password: string, rememberMe: boolean): AppThunkType => async dispatch => {
-
     const res = await authAPI.login(email, password, rememberMe)
     if (res.data.resultCode === 0) {
         dispatch(getAuthUserData())

@@ -43,7 +43,7 @@ export const profileAPI = {
     },
 }
 export const authAPI = {
-    getAuthHeader() {
+    getAuthMe() {
         return instance
             .get(`auth/me`)
             .then(response => response.data)

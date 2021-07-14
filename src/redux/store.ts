@@ -6,6 +6,7 @@ import usersReducer, {UsersActionType} from "./users-reducer";
 import authReducer, {AuthActionTypes} from "./auth-reducer";
 import {reducer as formReducer} from "redux-form";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
+import appReducer, {AppActionTypes} from "./app-reducer";
 
 // type UpdateNewPostTextType = {
 //     type: 'UPDATE-NEW-POST-TEXT'
@@ -95,6 +96,7 @@ const rootReducer = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    app: appReducer,
     form: formReducer,
 });
 
@@ -103,8 +105,8 @@ export type AppActionsType = AuthActionTypes
     | DialogsActionType
     | ProfileActionType
     | UsersActionType
-export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>
-
+    | AppActionTypes
+export type AppThunkType<ReturnType = Promise<void>> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 // @ts-ignore
