@@ -113,10 +113,11 @@ export type UsersActionType = ReturnType<typeof followSuccess>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof toggleTheFollowingProgress>
 
-export const getUsers = (currentPage: number, pageSize: number): AppThunkType => async dispatch => {
+export const getUsersTC = (page: number, pageSize: number): AppThunkType => async dispatch => {
     dispatch(toggleIsFetching(true))
-    const res = await usersAPI.getUsers(currentPage, pageSize)
+    const res = await usersAPI.getUsers(page, pageSize)
     dispatch(toggleIsFetching(false));
+    dispatch(setCurrentPage(page))
     dispatch(setUsers(res.items));
     dispatch(setUsersTotalCount(res.totalCount));
 }
