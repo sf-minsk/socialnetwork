@@ -16,24 +16,24 @@ export const usersAPI = {
             .get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
     },
-    setUnfollowUser(id: string) {
+    setUnfollowUser(id: number) {
         return instance
             .delete(`follow/${id}`)
             .then(response => response.data)
     },
-    setFollowUser(id: string) {
+    setFollowUser(id: number) {
         return instance
             .post(`follow/${id}`)
             .then(response => response.data)
     },
 }
 export const profileAPI = {
-    getProfile(userId: string) {
+    getProfile(userId: number | null) {
         return instance
             .get(`profile/` + userId)
             .then(response => response.data)
     },
-    getStatus(userId: string) {
+    getStatus(userId: number) {
         return instance
             .get(`profile/status/` + userId)
     },

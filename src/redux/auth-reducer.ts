@@ -14,7 +14,7 @@ export type AuthType = {
 }
 
 const initialState: AuthType = {
-    id: null,
+    id: null as number | null,
     email: null,
     login: null,
     isAuth: false
@@ -50,7 +50,7 @@ export const getAuthUserData = (): AppThunkType => async (dispatch) => {
 export const login = (email: string, password: string, rememberMe: boolean): AppThunkType => async dispatch => {
     const res = await authAPI.login(email, password, rememberMe)
     if (res.data.resultCode === 0) {
-        dispatch(getAuthUserData())
+        await dispatch(getAuthUserData())
     } else {
         let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Some error'
         let action: any = stopSubmit('login', {_error: message})

@@ -47,7 +47,7 @@ const initialState: InitialStateType = {
         {id: v1(), message: 'Hello', likeCount: 41},
         {id: v1(), message: 'How are u?', likeCount: 20}
     ],
-    profile: null,
+    profile: null as UsersProfileType | null,
     status: "status",
 }
 
@@ -96,11 +96,11 @@ export type ProfileActionType = ReturnType<typeof addPostAC>
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof setUserProfile>
 
-export const getUserProfile = (userId: string): AppThunkType => async dispatch => {
+export const getUserProfile = (userId: number | null): AppThunkType => async dispatch => {
     const res = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(res))
 }
-export const getStatus = (userId: string): AppThunkType => async dispatch => {
+export const getStatus = (userId: number): AppThunkType => async dispatch => {
     const res = await profileAPI.getStatus(userId)
     dispatch(setStatusAC(res.data))
 }

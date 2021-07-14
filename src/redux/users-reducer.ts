@@ -12,7 +12,7 @@ enum Type {
 }
 
 export type UsersType = {
-    id: string
+    id: number
     photoUrl: string
     followed: boolean
     fullName: string
@@ -26,7 +26,7 @@ export type InitialStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgressArray: Array<string>
+    followingInProgressArray: Array<number>
 }
 
 const initialState: InitialStateType = {
@@ -84,8 +84,8 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
     }
 }
 
-export const followSuccess = (userID: string) => ({type: Type.FOLLOW, userID} as const)
-export const unfollowSuccess = (userID: string) => ({type: Type.UNFOLLOW, userID} as const)
+export const followSuccess = (userID: number) => ({type: Type.FOLLOW, userID} as const)
+export const unfollowSuccess = (userID: number) => ({type: Type.UNFOLLOW, userID} as const)
 export const setUsers = (users: Array<UsersType>) => ({type: Type.SET_USERS, users} as const)
 export const setCurrentPage = (currentPage: number) => ({
     type: Type.SET_CURRENT_PAGE,
@@ -99,7 +99,7 @@ export const toggleIsFetching = (isFetching: boolean) => ({
     type: Type.TOGGLE_IS_FETCHING,
     isFetching
 } as const)
-export const toggleTheFollowingProgress = (isFetching: boolean, userId: string) => ({
+export const toggleTheFollowingProgress = (isFetching: boolean, userId: number) => ({
     type: Type.TOGGLE_THE_FOLLOWING_PROGRESS,
     isFetching,
     userId,
@@ -120,7 +120,7 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunkType =>
     dispatch(setUsers(res.items));
     dispatch(setUsersTotalCount(res.totalCount));
 }
-export const follow = (userId: string): AppThunkType => async dispatch => {
+export const follow = (userId: number): AppThunkType => async dispatch => {
     dispatch(toggleTheFollowingProgress(true, userId))
     const res = await usersAPI.setFollowUser(userId)
     if (res.resultCode === 0) {
@@ -128,7 +128,7 @@ export const follow = (userId: string): AppThunkType => async dispatch => {
     }
     dispatch(toggleTheFollowingProgress(false, userId))
 }
-export const unFollow = (userId: string): AppThunkType => async dispatch => {
+export const unFollow = (userId: number): AppThunkType => async dispatch => {
     dispatch(toggleTheFollowingProgress(true, userId))
     const res = await usersAPI.setUnfollowUser(userId)
     if (res.resultCode === 0) {

@@ -32,10 +32,6 @@ export const initializedSuccessAC = () => ({
 export type AppActionTypes = ReturnType<typeof initializedSuccessAC>
 
 export const initializeAppTC = (): AppThunkType => async dispatch => {
-    // await Promise.all([dispatch(getAuthUserData())])
-    //     // @ts-ignore
-    //     .then(dispatch(initializedSuccessAC())
-    //     )
     let promise = dispatch(getAuthUserData())
     Promise.all([promise]).then(() => {
         dispatch(initializedSuccessAC())
