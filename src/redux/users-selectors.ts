@@ -1,11 +1,11 @@
 import {AppStateType} from "./store";
 import {createSelector} from "reselect";
 
-export const getUsers = (state: AppStateType) => {
+export const getUsersSelector = (state: AppStateType) => {
     return state.usersPage.users
 }
 
-export const getUsersSelector = createSelector(getUsers, (users) => {
+export const getUsers = createSelector(getUsersSelector,(users) => {
     return users
 })
 
