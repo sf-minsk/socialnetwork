@@ -1,7 +1,6 @@
 import {v1} from "uuid";
 import {AppThunkType} from "./store";
 import {profileAPI} from "../api/api";
-import {toggleIsFetching} from "./users-reducer";
 
 enum Type {
     ADD_POST = 'ADD-POST',
