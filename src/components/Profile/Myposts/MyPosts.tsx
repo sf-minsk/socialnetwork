@@ -15,27 +15,31 @@ type FormDataType = {
 }
 const maxLength30 = maxLengthCreator(30)
 const minLength2 = minLengthCreator(2)
-const AddPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    component={TextArea}
-                    name='newPostBody'
-                    placeholder='Enter Your Post Message'
-                    validate={[required, maxLength30, minLength2]}
-                />
-            </div>
-            <div>
-                <button>POST</button>
-            </div>
-        </form>
-    )
+
+class AddPostForm extends React.Component<InjectedFormProps<FormDataType>> {
+    render() {
+        return (
+            <form onSubmit={this.props.handleSubmit}>
+                <div>
+                    <Field
+                        component={TextArea}
+                        name='newPostBody'
+                        placeholder='Enter Your Post Message'
+                        validate={[required, maxLength30, minLength2]}
+                    />
+                </div>
+                <div>
+                    <button>POST</button>
+                </div>
+            </form>
+        )
+    }
 }
 
 const AddPostFormRedux = reduxForm<FormDataType>({form: 'ProfileAddNewPostForm'})(AddPostForm)
 
-export const MyPosts = (props: PropsType) => {
+export const MyPosts = React.memo((props: PropsType) => {
+
     const postsElements = props.posts.map(p =>
         <Post key={p.id} message={p.message} likeCount={p.likeCount}/>
     )
@@ -49,4 +53,4 @@ export const MyPosts = (props: PropsType) => {
             <div className={s.posts}> {postsElements}  </div>
         </div>
     )
-}
+})

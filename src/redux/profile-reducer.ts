@@ -4,6 +4,7 @@ import {profileAPI} from "../api/api";
 
 enum Type {
     ADD_POST = 'ADD-POST',
+    DELETE_POST = 'DELETE-POST',
     SET_USER_PROFILE = 'SET-USER-PROFILE',
     SET_USER_STATUS = 'SET-USER-STATUS',
 }
@@ -63,6 +64,9 @@ const profileReducer = (state: InitialStateType = initialState, action: ProfileA
                 ...state,
                 posts: [...state.posts, newPost],
             }
+        case Type.DELETE_POST: {
+            return {...state, posts: state.posts.filter(el => el.id !== action.id)}
+        }
         case Type.SET_USER_PROFILE:
             return {
                 ...state,
@@ -84,6 +88,12 @@ export const addPostAC = (newPostBody: string) => {
         newPostBody,
     } as const
 }
+export const deletePostAC = (id: string) => {
+    return {
+        type: Type.DELETE_POST,
+        id
+    } as const
+}
 export const setStatusAC = (status: string) => ({type: Type.SET_USER_STATUS, status} as const)
 export const setUserProfile = (profile: UsersProfileType) => {
     return {
@@ -92,7 +102,9 @@ export const setUserProfile = (profile: UsersProfileType) => {
     } as const
 }
 
-export type ProfileActionType = ReturnType<typeof addPostAC>
+export type ProfileActionType =
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof deletePostAC>
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof setUserProfile>
 
