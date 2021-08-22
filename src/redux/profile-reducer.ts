@@ -3,10 +3,10 @@ import {AppThunkType} from "./store";
 import {profileAPI} from "../api/api";
 
 enum Type {
-    ADD_POST = 'ADD-POST',
-    DELETE_POST = 'DELETE-POST',
-    SET_USER_PROFILE = 'SET-USER-PROFILE',
-    SET_USER_STATUS = 'SET-USER-STATUS',
+    ADD_POST = 'profile/ADD-POST',
+    DELETE_POST = 'profile/DELETE-POST',
+    SET_USER_PROFILE = 'profile/SET-USER-PROFILE',
+    SET_USER_STATUS = 'profile/SET-USER-STATUS',
 }
 
 export type PostsType = {

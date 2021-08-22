@@ -3,7 +3,7 @@ import {AppThunkType} from "./store";
 import {stopSubmit} from "redux-form";
 
 enum Type {
-    SET_USER_DATA = 'SET-USER-DATA',
+    SET_USER_DATA = 'auth/SET-USER-DATA',
 }
 
 export type AuthType = {

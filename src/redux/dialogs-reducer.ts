@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 
 enum Type {
-    SEND_MESSAGE = 'SEND-MESSAGE',
+    SEND_MESSAGE = 'dialogs/SEND-MESSAGE',
 }
 
 export type DialogsType = {
