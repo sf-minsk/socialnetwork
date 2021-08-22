@@ -1,9 +1,9 @@
 import React from "react";
 import styles from './users.module.css'
 import userPhoto from '../../assets/images/userWhithoutAvatar.png'
-import {v1} from "uuid";
 import {NavLink} from "react-router-dom";
 import {UsersType} from "../../redux/users-reducer";
+import {Paginator} from "../Common/Paginator/Paginator";
 
 type PropsType = {
     totalUsersCount: number
@@ -16,25 +16,24 @@ type PropsType = {
     followingInProgressArray: Array<number>
 }
 
-export const Users = (props: PropsType) => {
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
+export const Users = ({
+                          totalUsersCount,
+                          users,
+                          currentPage,
+                          pageSize,
+                          onPageChanged,
+                          followingInProgressArray,
+                          follow,
+                          unFollow
+                      }: PropsType) => {
 
     return <div>
-        <div>
-            {pages.map(p => <button key={v1()} className={props.currentPage === p ? styles.selectedPage : ''}
-                                    onClick={() => {
-                                        props.onPageChanged(p)
-                                    }}>{p}</button>
-            )}
-        </div>
-        {
-            props.users.map((u: any) => <div key={u.id}>
+        <Paginator
+            totalUsersCount={totalUsersCount}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChanged={onPageChanged}/>
+        {users.map((u: any) => <div key={u.id}>
                 <span>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
@@ -44,20 +43,20 @@ export const Users = (props: PropsType) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button disabled={props.followingInProgressArray.some(id => id === u.id)} onClick={() => {
-                                props.unFollow(u.id)
+                            ? <button disabled={followingInProgressArray.some(id => id === u.id)} onClick={() => {
+                                unFollow(u.id)
                             }}>
                                 UNFOLLOW
                             </button>
-                            : <button disabled={props.followingInProgressArray.some(id => id === u.id)} onClick={() => {
-                                props.follow(u.id)
+                            : <button disabled={followingInProgressArray.some(id => id === u.id)} onClick={() => {
+                                follow(u.id)
                             }}>
                                 FOLLOW
                             </button>
                         }
                     </div>
                 </span>
-                <span>
+            <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
@@ -67,7 +66,7 @@ export const Users = (props: PropsType) => {
                         <div>{"u.location.city"}</div>
                     </span>
                 </span>
-            </div>)
+        </div>)
         }
         Users will be here
     </div>
