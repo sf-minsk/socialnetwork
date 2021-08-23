@@ -66,9 +66,7 @@ export const Users = ({
                         <div>{"u.location.city"}</div>
                     </span>
                 </span>
-        </div>)
-        }
-        Users will be here
+        </div>)}
     </div>
 }
 
