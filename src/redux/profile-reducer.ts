@@ -7,6 +7,7 @@ enum Type {
     DELETE_POST = 'profile/DELETE-POST',
     SET_USER_PROFILE = 'profile/SET-USER-PROFILE',
     SET_USER_STATUS = 'profile/SET-USER-STATUS',
+    SAVE_PHOTO = 'profile/SAVE_PHOTO',
 }
 
 export type PostsType = {
@@ -32,8 +33,8 @@ export type UsersProfileType = {
     fullName: string
     userId: number
     photos: {
-        small: string
-        large: string
+        small: string | undefined
+        large: string | undefined
     }
 }
 
@@ -77,6 +78,11 @@ const profileReducer = (state: InitialStateType = initialState, action: ProfileA
                 ...state,
                 status: action.status,
             }
+        case Type.SAVE_PHOTO:
+            if (state.profile) {
+                return {...state, profile: {...state.profile, photos: action.photos}}
+            } else return state
+
         default:
             return state
     }
@@ -94,6 +100,12 @@ export const deletePostAC = (id: string) => {
         id
     } as const
 }
+export const savePhotoSuccess = (photos: { small: string, large: string}) => {
+    return {
+        type: Type.SAVE_PHOTO,
+        photos
+    } as const
+}
 export const setStatusAC = (status: string) => ({type: Type.SET_USER_STATUS, status} as const)
 export const setUserProfile = (profile: UsersProfileType) => {
     return {
@@ -107,6 +119,7 @@ export type ProfileActionType =
     | ReturnType<typeof deletePostAC>
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof savePhotoSuccess>
 
 export const getUserProfile = (userId: number | null): AppThunkType => async dispatch => {
     const res = await profileAPI.getProfile(userId)
@@ -120,6 +133,12 @@ export const updateStatus = (status: string): AppThunkType => async dispatch => 
     const res = await profileAPI.updateStatus(status)
     if (res.data.resultCode === 0) {
         dispatch(setStatusAC(status))
+    }
+}
+export const savePhoto = (photo: File): AppThunkType => async dispatch => {
+    const res = await profileAPI.savePhoto(photo)
+    if (res.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(res.data))
     }
 }
 
