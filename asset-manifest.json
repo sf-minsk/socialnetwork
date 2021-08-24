@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.856a4fa5.chunk.css",
+    "main.js": "/static/js/main.34d0fbe5.chunk.js",
+    "main.js.map": "/static/js/main.34d0fbe5.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.9601a8ff.js",
+    "runtime-main.js.map": "/static/js/runtime-main.9601a8ff.js.map",
+    "static/js/2.79189f22.chunk.js": "/static/js/2.79189f22.chunk.js",
+    "static/js/2.79189f22.chunk.js.map": "/static/js/2.79189f22.chunk.js.map",
+    "static/css/3.c12a9ee4.chunk.css": "/static/css/3.c12a9ee4.chunk.css",
+    "static/js/3.ef47c73f.chunk.js": "/static/js/3.ef47c73f.chunk.js",
+    "static/js/3.ef47c73f.chunk.js.map": "/static/js/3.ef47c73f.chunk.js.map",
+    "static/css/4.ee2384f4.chunk.css": "/static/css/4.ee2384f4.chunk.css",
+    "static/js/4.2f139ad4.chunk.js": "/static/js/4.2f139ad4.chunk.js",
+    "static/js/4.2f139ad4.chunk.js.map": "/static/js/4.2f139ad4.chunk.js.map",
+    "static/css/5.5716cf9f.chunk.css": "/static/css/5.5716cf9f.chunk.css",
+    "static/js/5.9fb8ffe3.chunk.js": "/static/js/5.9fb8ffe3.chunk.js",
+    "static/js/5.9fb8ffe3.chunk.js.map": "/static/js/5.9fb8ffe3.chunk.js.map",
+    "static/js/6.9cf0dc5e.chunk.js": "/static/js/6.9cf0dc5e.chunk.js",
+    "static/js/6.9cf0dc5e.chunk.js.map": "/static/js/6.9cf0dc5e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/3.c12a9ee4.chunk.css.map": "/static/css/3.c12a9ee4.chunk.css.map",
+    "static/css/4.ee2384f4.chunk.css.map": "/static/css/4.ee2384f4.chunk.css.map",
+    "static/css/5.5716cf9f.chunk.css.map": "/static/css/5.5716cf9f.chunk.css.map",
+    "static/css/main.856a4fa5.chunk.css.map": "/static/css/main.856a4fa5.chunk.css.map",
+    "static/js/2.79189f22.chunk.js.LICENSE.txt": "/static/js/2.79189f22.chunk.js.LICENSE.txt",
+    "static/media/PElogovector.fce73906.png": "/static/media/PElogovector.fce73906.png",
+    "static/media/contentLogo.95a560ea.png": "/static/media/contentLogo.95a560ea.png",
+    "static/media/preloader.81da48ab.gif": "/static/media/preloader.81da48ab.gif",
+    "static/media/userWhithoutAvatar.c2876ea8.png": "/static/media/userWhithoutAvatar.c2876ea8.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9601a8ff.js",
+    "static/js/2.79189f22.chunk.js",
+    "static/css/main.856a4fa5.chunk.css",
+    "static/js/main.34d0fbe5.chunk.js"
+  ]
+}
