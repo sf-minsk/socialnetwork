@@ -33,15 +33,24 @@ export const ProfileInfo = (props: PropsType) => {
                 <img src={logo} alt={'logo'}/>
             </div>
 
-            {props.profile.fullName}
+            <div><b>{props.profile.fullName}</b></div>
+            <div style={{display: 'inline-flex'}}>
+
+            <b>Status: </b><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+            </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large || userPhoto} alt={'userPhoto'}/>
             </div>
             {props.isOwner && <input name={'change photo'} type={"file"} onChange={onMainPhotoSelected}/>}
             <div>
-                Status:
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <b>Looking for a job:</b> {props.profile.lookingForAJob ? 'yes' : 'no'}
             </div>
+            {props.profile.lookingForAJob && <div><b>My professional skills</b> : {props.profile.lookingForAJobDescription}</div>}
+            <div>
+                <b>About me:</b> {props.profile.aboutMe}
+            </div>
+
+
 
         </div>
     )
