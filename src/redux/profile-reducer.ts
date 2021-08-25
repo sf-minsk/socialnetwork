@@ -1,6 +1,7 @@
 import {v1} from "uuid";
 import {AppThunkType} from "./store";
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 enum Type {
     ADD_POST = 'profile/ADD-POST',
@@ -40,7 +41,7 @@ export type UsersProfileType = {
 
 export type InitialStateType = {
     posts: Array<PostsType>
-    profile: UsersProfileType | null
+    profile: UsersProfileType
     status: string
 }
 
@@ -49,7 +50,7 @@ const initialState: InitialStateType = {
         {id: v1(), message: 'Hello', likeCount: 41},
         {id: v1(), message: 'How are u?', likeCount: 20}
     ],
-    profile: null as UsersProfileType | null,
+    profile: null as unknown as UsersProfileType,
     status: "status",
 }
 
@@ -100,7 +101,7 @@ export const deletePostAC = (id: string) => {
         id
     } as const
 }
-export const savePhotoSuccess = (photos: { small: string, large: string}) => {
+export const savePhotoSuccess = (photos: { small: string, large: string }) => {
     return {
         type: Type.SAVE_PHOTO,
         photos
@@ -141,5 +142,15 @@ export const savePhoto = (photo: File): AppThunkType => async dispatch => {
         dispatch(savePhotoSuccess(res.data.data.photos))
     }
 }
+export const saveProfile = (profile: any): AppThunkType => async (dispatch, getState) => {
+    const res = await profileAPI.saveProfile(profile)
+    if (res.data.resultCode === 0) {
+        await dispatch(getUserProfile(getState().auth.id))
+    } else {
+        dispatch(stopSubmit('editProfile', {_error: res.data.messages[0]}))
+        return Promise.reject()
+    }
+}
+
 
 export default profileReducer

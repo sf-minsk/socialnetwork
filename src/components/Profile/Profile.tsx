@@ -5,10 +5,11 @@ import {UsersProfileType} from "../../redux/profile-reducer";
 
 type PropsType = {
     isOwner: boolean
-    profile: UsersProfileType | null
+    profile: UsersProfileType
     status: string
     updateStatus: (status: string) => void
     savePhoto: (photo: File) => void
+    saveProfile: (formData: any) => Promise<any>
 }
 
 export const Profile = (props: PropsType) => {
@@ -20,6 +21,7 @@ export const Profile = (props: PropsType) => {
                 profile={props.profile}
                 status={props.status}
                 updateStatus={props.updateStatus}
+                saveProfile={props.saveProfile}
             />
             <MyPostsContainer/>
         </div>

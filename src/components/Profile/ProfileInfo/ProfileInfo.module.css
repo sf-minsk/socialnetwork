@@ -11,3 +11,14 @@
     width: 140px;
     height: 140px;
 }
+
+.contact {
+    padding-left: 10px;
+}
+
+.formError {
+    display: inline-block;
+    color: RED;
+    border: 1px solid red;
+    padding: 5px;
+}
