@@ -43,7 +43,7 @@ export const profileAPI = {
     },
     savePhoto(photoFile: File) {
         const formData = new FormData()
-        formData.append('image', photoFile )
+        formData.append('image', photoFile)
         return instance
             .put(`profile/photo/`, formData, {
                 headers: {
@@ -62,14 +62,20 @@ export const authAPI = {
             .get(`auth/me`)
             .then(response => response.data)
     },
-    login(email: string, password: string, rememberMe = false) {
+    login(email: string, password: string, rememberMe = false, captcha: string) {
         return instance
-            .post(`auth/login`, {email, password, rememberMe})
+            .post(`auth/login`, {email, password, rememberMe, captcha})
     },
     logout() {
         return instance
             .delete(`auth/login`)
     },
+}
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance
+            .get('security/get-captcha-url')
+    }
 }
 
 

@@ -26,7 +26,6 @@ export const ProfileInfo = (props: PropsType) => {
         props.saveProfile(formData).then(() => {
             setEditMode(false)
         })
-
     }
     if (!props.profile) {
         return <Preloader/>
@@ -40,7 +39,6 @@ export const ProfileInfo = (props: PropsType) => {
     return (
         <div className={s.content}>
             <div><img src={logo} alt={'logo'}/></div>
-
             <div style={{display: 'inline-flex'}}>
                 <b>Status: </b><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
