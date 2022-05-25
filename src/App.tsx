@@ -20,7 +20,7 @@ import {withSuspense} from "./hoc/withSuspense";
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
 const UsersContainer = React.lazy(() => import("./components/Users/UsersContainer"))
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
-//test comment
+//test comment2
 type mapStateToPropsType = {
     initialized: boolean
 }
